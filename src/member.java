@@ -6,7 +6,7 @@ import java.util.Map;
 
 @SuppressWarnings("serial")
 public class member implements Serializable {
-
+// test 123
 	private String LN;
 	private String FN;
 	private String EM;
