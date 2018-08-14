@@ -8,7 +8,7 @@ public class Book implements Serializable { //class name should be in cAPITAL
 	private String A;
 	private String C;
 	private int ID;
-	
+	//nashath
 	private enum STATE { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
 	private STATE state;
 	
