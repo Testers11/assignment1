@@ -1,14 +1,15 @@
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+import java.util.Calendar
 
 public class Calendar {
 	
 	private static Calendar self;
-	private static java.util.Calendar cal;
+	private static Calender  calender;
 	
 	
 	private Calendar() {
-		cal = java.util.Calendar.getInstance();
+		calender = Calendar.getInstance();
 	}
 	
 	public static Calendar getInstance() {
@@ -19,16 +20,16 @@ public class Calendar {
 	}
 	
 	public void incrementDate(int days) {
-		cal.add(java.util.Calendar.DATE, days);		
+		calender.add(Calendar.DATE, days);		
 	}
 	
 	public synchronized void setDate(Date date) {
 		try {
-			cal.setTime(date);
-	        cal.set(java.util.Calendar.HOUR_OF_DAY, 0);  
-	        cal.set(java.util.Calendar.MINUTE, 0);  
-	        cal.set(java.util.Calendar.SECOND, 0);  
-	        cal.set(java.util.Calendar.MILLISECOND, 0);
+			calender.setTime(date);
+	        calender.set(Calendar.HOUR_OF_DAY, 0);  
+	        calender.set(Calendar.MINUTE, 0);  
+	        calender.set(Calendar.SECOND, 0);  
+	        calender.set(Calendar.MILLISECOND, 0);
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -36,11 +37,11 @@ public class Calendar {
 	}
 	public synchronized Date Date() {
 		try {
-	        cal.set(java.util.Calendar.HOUR_OF_DAY, 0);  
-	        cal.set(java.util.Calendar.MINUTE, 0);  
-	        cal.set(java.util.Calendar.SECOND, 0);  
-	        cal.set(java.util.Calendar.MILLISECOND, 0);
-			return cal.getTime();
+	        calender.set(Calendar.HOUR_OF_DAY, 0);  
+	        calender.set(Calendar.MINUTE, 0);  
+	        calender.set(Calendar.SECOND, 0);  
+	        calender.set(Calendar.MILLISECOND, 0);
+			return calender.getTime();
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -49,9 +50,9 @@ public class Calendar {
 
 	public synchronized Date getDueDate(int loanPeriod) {
 		Date now = Date();
-		cal.add(java.util.Calendar.DATE, loanPeriod);
-		Date dueDate = cal.getTime();
-		cal.setTime(now);
+		calender.add(java.util.Calendar.DATE, loanPeriod);
+		Date dueDate = calender.getTime();
+		calander.setTime(now);
 		return dueDate;
 	}
 	
