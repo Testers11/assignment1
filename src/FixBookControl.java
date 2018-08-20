@@ -1,29 +1,29 @@
 public class FixBookControl {
-	
-	private FixBookUI ui;
+	//Enums for book status
+	private FixBookUI userInterface;
 	private enum CONTROL_STATE { INITIALISED, READY, FIXING };
 	private CONTROL_STATE state;
 	
 	private library library;
 	private book currentBook;
 
-
+     //constructor for fix book controler
 	public FixBookControl() {
 		this.library = library.INSTANCE();
 		state = CONTROL_STATE.INITIALISED;
 	}
 	
-	
-	public void setUI(FixBookUI ui) {
+	//set User Interface
+	public void setUI(FixBookUI userInterface) {
 		if (!state.equals(CONTROL_STATE.INITIALISED)) {
 			throw new RuntimeException("FixBookControl: cannot call setUI except in INITIALISED state");
 		}	
-		this.ui = ui;
-		ui.setState(FixBookUI.UI_STATE.READY);
+		this.userInterface = userInterface;
+		userInterface.setState(FixBookUI.UI_STATE.READY);
 		state = CONTROL_STATE.READY;		
 	}
 
-
+    //Method for scan book
 	public void bookScanned(int bookId) {
 		if (!state.equals(CONTROL_STATE.READY)) {
 			throw new RuntimeException("FixBookControl: cannot call bookScanned except in READY state");
@@ -31,19 +31,20 @@ public class FixBookControl {
 		currentBook = library.Book(bookId);
 		
 		if (currentBook == null) {
-			ui.display("Invalid bookId");
+			userInterface.display("Invalid bookId");
 			return;
 		}
 		if (!currentBook.Damaged()) {
-			ui.display("\"Book has not been damaged");
+			userInterface.display("\"Book has not been damaged");
 			return;
 		}
-		ui.display(currentBook.toString());
-		ui.setState(FixBookUI.UI_STATE.FIXING);
+		userInterface.display(currentBook.toString());
+		userInterface.setState(FixBookUI.UI_STATE.FIXING);
 		state = CONTROL_STATE.FIXING;		
 	}
 
-
+	
+	//Method for fix book
 	public void fixBook(boolean fix) {
 		if (!state.equals(CONTROL_STATE.FIXING)) {
 			throw new RuntimeException("FixBookControl: cannot call fixBook except in FIXING state");
@@ -52,16 +53,16 @@ public class FixBookControl {
 			library.repairBook(currentBook);
 		}
 		currentBook = null;
-		ui.setState(FixBookUI.UI_STATE.READY);
+		userInterface.setState(FixBookUI.UI_STATE.READY);
 		state = CONTROL_STATE.READY;		
 	}
 
-	
+	// Method to shoe scsnning progress massage
 	public void scanningComplete() {
 		if (!state.equals(CONTROL_STATE.READY)) {
 			throw new RuntimeException("FixBookControl: cannot call scanningComplete except in READY state");
 		}	
-		ui.setState(FixBookUI.UI_STATE.COMPLETED);		
+		userInterface.setState(FixBookUI.UI_STATE.COMPLETED);		
 	}
 
 
