@@ -11,7 +11,7 @@ public class Calendar {
 	private Calendar() {
 		calender = Calendar.getInstance();
 	}
-	
+	//Get Calandar Instance
 	public static Calendar getInstance() {
 		if (self == null) {
 			self = new Calendar();
