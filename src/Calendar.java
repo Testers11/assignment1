@@ -1,5 +1,6 @@
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+//Change 1.1
 import java.util.Calendar
 
 public class Calendar {
@@ -11,14 +12,14 @@ public class Calendar {
 	private Calendar() {
 		calender = Calendar.getInstance();
 	}
-	//Get Calandar Instance
+	//Get Calandar Instance Change 1.2
 	public static Calendar getInstance() {
 		if (self == null) {
 			self = new Calendar();
 		}
 		return self;
 	}
-	
+	//Cahange 1.3
 	public void incrementDate(int days) {
 		calender.add(Calendar.DATE, days);		
 	}
