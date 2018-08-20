@@ -4,17 +4,17 @@ import java.util.Date;
 
 @SuppressWarnings("serial")
 public class Loan implements Serializable { // changed loan to Loan Class name should be in capital
-	
+
 	public static enum LOAN_STATE { CURRENT, OVER_DUE, DISCHARGED };
-	
+
 	private int ID;
 	private Book book; //class name to Book and variable B to book
 	private member M;
 	private Date D;
 	private LOAN_STATE state;
 
-	
-	public Loan(int loanId, book book, member member, Date dueDate) { // changed loan to Loan
+
+	public Loan(int loanId, book book, member member, Date dueDate) { // changed loan to Loan..
 		this.ID = loanId;
 		this.B = book;
 		this.M = member;
@@ -22,20 +22,20 @@ public class Loan implements Serializable { // changed loan to Loan Class name s
 		this.state = LOAN_STATE.CURRENT;
 	}
 
-	
+
 	public void checkOverDue() {
 		if (state == LOAN_STATE.CURRENT &&
 			Calendar.getInstance().Date().after(D)) {
-			this.state = LOAN_STATE.OVER_DUE;			
+			this.state = LOAN_STATE.OVER_DUE;
 		}
 	}
 
-	
+
 	public boolean isOverDue() {
 		return state == LOAN_STATE.OVER_DUE;
 	}
 
-	
+
 	public Integer getId() {
 		return ID;
 	}
@@ -44,8 +44,8 @@ public class Loan implements Serializable { // changed loan to Loan Class name s
 	public Date getDueDate() {
 		return D;
 	}
-	
-	
+
+
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -56,7 +56,7 @@ public class Loan implements Serializable { // changed loan to Loan Class name s
 		  .append("  Book ").append(B.ID()).append(" : " )
 		  .append(B.Title()).append("\n")
 		  .append("  DueDate: ").append(sdf.format(D)).append("\n")
-		  .append("  State: ").append(state);		
+		  .append("  State: ").append(state);
 		return sb.toString();
 	}
 
@@ -72,7 +72,7 @@ public class Loan implements Serializable { // changed loan to Loan Class name s
 
 
 	public void Loan() {
-		state = LOAN_STATE.DISCHARGED;		
+		state = LOAN_STATE.DISCHARGED;
 	}
 
 }
