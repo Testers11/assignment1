@@ -1,5 +1,5 @@
 public class FixBookControl {
-	//Enums for book status
+	// 1.1 Comment Enums for book status
 	private FixBookUI userInterface;
 	private enum CONTROL_STATE { INITIALISED, READY, FIXING };
 	private CONTROL_STATE state;
@@ -7,14 +7,15 @@ public class FixBookControl {
 	private library library;
 	private book currentBook;
 
-     //constructor for fix book controler
+     //1.2 Comment constructor for fix book controler
 	public FixBookControl() {
 		this.library = library.INSTANCE();
 		state = CONTROL_STATE.INITIALISED;
 	}
 	
-	//set User Interface
-	public void setUI(FixBookUI userInterface) {
+	//1.3 Comment set User Interface
+	//1.4Changed to meaningfull Method name
+	public void setUserInterface(FixBookUI userInterface) {
 		if (!state.equals(CONTROL_STATE.INITIALISED)) {
 			throw new RuntimeException("FixBookControl: cannot call setUI except in INITIALISED state");
 		}	
@@ -23,7 +24,7 @@ public class FixBookControl {
 		state = CONTROL_STATE.READY;		
 	}
 
-    //Method for scan book
+    //1.5 Comment Method for scan book
 	public void bookScanned(int bookId) {
 		if (!state.equals(CONTROL_STATE.READY)) {
 			throw new RuntimeException("FixBookControl: cannot call bookScanned except in READY state");
@@ -44,12 +45,13 @@ public class FixBookControl {
 	}
 
 	
-	//Method for fix book
-	public void fixBook(boolean fix) {
+	//1.6 comment Method for fix book
+	// 1.7 Changed boolean Name
+	public void fixBook(boolean IsFixed) {
 		if (!state.equals(CONTROL_STATE.FIXING)) {
 			throw new RuntimeException("FixBookControl: cannot call fixBook except in FIXING state");
 		}	
-		if (fix) {
+		if (IsFixed) {
 			library.repairBook(currentBook);
 		}
 		currentBook = null;
