@@ -49,39 +49,39 @@ public class BorrowBookControl {
 			ui.display("Member cannot borrow at this time");
 			ui.setState(BorrowBookUI.UI_STATE.RESTRICTED); }}
 
-	public void Scanned(int bookId) {
-		B = null;
+	public void scanned(int bookId) { // change_1.09 method name Scanned has chnged into scanned
+		book = null; // change_1.10 variable name B has changed to book as defined above.
 		if (!state.equals(CONTROL_STATE.SCANNING)) {
 			throw new RuntimeException("BorrowBookControl: cannot call bookScanned except in SCANNING state");
 		}	
-		B = L.Book(bookId);
-		if (B == null) {
+		book = library.Book(bookId); // change_1.11 variable names B and L have chnged to book and library as defined above
+		if (book == null) { // change_1.12 variable name B has changed to book as defined above.
 			ui.display("Invalid bookId");
 			return;
 		}
-		if (!B.Available()) {
+		if (!book.Available()) { // change_1.13 variable name B has changed to book as defined above.
 			ui.display("Book cannot be borrowed");
 			return;
 		}
-		PENDING.add(B);
-		for (book B : PENDING) {
-			ui.display(B.toString());
+		PENDING.add(book); // change_1.14 variable name B has changed to book as defined above.
+		for (Book book : PENDING) { // change_1.15 Object class name book has changed to Book and reference variable name B has changed to book.
+			ui.display(book.toString()); // change_1.16 variable name B has changed to book as defined above.
 		}
-		if (L.loansRemainingForMember(M) - PENDING.size() == 0) {
+		if (library.loansRemainingForMember(member) - PENDING.size() == 0) {
 			ui.display("Loan limit reached");
-			Complete();
+			complete();
 		}
 	}
 	
 	
-	public void Complete() {
+	public void complete() { // change_1.16 method name Complete has chnged into lowerCamelcase complete
 		if (PENDING.size() == 0) {
 			cancel();
 		}
 		else {
 			ui.display("\nFinal Borrowing List");
-			for (book b : PENDING) {
-				ui.display(b.toString());
+			for (book book : PENDING) { // change_1.17 Object class name book has changed to Book and reference variable name B has changed to book.
+				ui.display(book.toString()); // change_1.18 variable name B has changed to book as defined above.
 			}
 			COMPLETED = new ArrayList<loan>();
 			ui.setState(BorrowBookUI.UI_STATE.FINALISING);
@@ -94,8 +94,8 @@ public class BorrowBookControl {
 		if (!state.equals(CONTROL_STATE.FINALISING)) {
 			throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
 		}	
-		for (book b : PENDING) {
-			loan loan = L.issueLoan(b, M);
+		for (book book : PENDING) {
+			loan loan = library.issueLoan(book, member);
 			COMPLETED.add(loan);			
 		}
 		ui.display("Completed Loan Slip");
