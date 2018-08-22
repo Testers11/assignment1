@@ -26,38 +26,38 @@ public class Book implements Serializable { // change_1.01 class name book has c
 		sb.append("Book: ").append(id).append("\n") // change_1.11 ID has changed to id.
 		  .append("  Title:  ").append(title).append("\n") // change_1.12 T has changed to title.
 		  .append("  Author: ").append(author).append("\n") // change_1.13 A has changed to author.
-		  .append("  CallNo: ").append(C).append("\n") // change_1.14 C has changed to callNo.
+		  .append("  CallNo: ").append(callNo).append("\n") // change_1.14 C has changed to callNo .
 		  .append("  State:  ").append(state);
 		
 		return sb.toString();
 	}
 
-	public Integer ID() {
-		return ID;
+	public Integer getId() { // change_1.15 method name ID has changed to getId
+		return id; // change_1.16 variable name ID has changed to id.
 	}
 
-	public String Title() {
-		return T;
+	public String getTitle() { // change_1.17 method name Title has changed to getTitle
+		return title; // change_1.18 variable name T has changed to title
 	}
 
 
 	
-	public boolean Available() {
+	public boolean isAvailable() { // change_1.19 method name Available has changed to isAvailable.
 		return state == STATE.AVAILABLE;
 	}
 
 	
-	public boolean On_loan() {
+	public boolean isOnLoan() { // change_1.20 method name On_loan has changed to isOnLoan.
 		return state == STATE.ON_LOAN;
 	}
 
 	
-	public boolean Damaged() {
+	public boolean isDamaged() { // change_1.21 method name Damaged has changed to isDamaged.
 		return state == STATE.DAMAGED;
 	}
 
 	
-	public void Borrow() {
+	public void borrowBook() { // change_1.22 method name Borrow has changed to borrowBook
 		if (state.equals(STATE.AVAILABLE)) {
 			state = STATE.ON_LOAN;
 		}
@@ -68,7 +68,7 @@ public class Book implements Serializable { // change_1.01 class name book has c
 	}
 
 
-	public void Return(boolean DAMAGED) {
+	public void returnBook(boolean DAMAGED) { // change_1.23 method name Return has changed to returnBook.
 		if (state.equals(STATE.ON_LOAN)) {
 			if (DAMAGED) {
 				state = STATE.DAMAGED;
@@ -83,7 +83,7 @@ public class Book implements Serializable { // change_1.01 class name book has c
 	}
 
 	
-	public void Repair() {
+	public void repairBook() { // change_1.24 method name Repair has changed to repairBook.
 		if (state.equals(STATE.DAMAGED)) {
 			state = STATE.AVAILABLE;
 		}
