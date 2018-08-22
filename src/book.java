@@ -26,7 +26,7 @@ public class Book implements Serializable { // change_1.01 class name book has c
 		sb.append("Book: ").append(id).append("\n") // change_1.11 ID has changed to id.
 		  .append("  Title:  ").append(title).append("\n") // change_1.12 T has changed to title.
 		  .append("  Author: ").append(author).append("\n") // change_1.13 A has changed to author.
-		  .append("  CallNo: ").append(C).append("\n") // change_1.14 C has changed to callNo.
+		  .append("  CallNo: ").append(C).append("\n") // change_1.14 C has changed to callNo .
 		  .append("  State:  ").append(state);
 		
 		return sb.toString();
