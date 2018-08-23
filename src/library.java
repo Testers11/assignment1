@@ -14,7 +14,7 @@ import java.util.Map;
 
 
 @SuppressWarnings("serial")
-public class Library implements Serializable { //class name should Start with capital
+public class Library implements Serializable { // change 1.0_ class name should Start with capital
 
 	private static final String LIBRARY_FILE = "library.obj";
 	private static final int LOAN_LIMIT = 2;
@@ -23,58 +23,58 @@ public class Library implements Serializable { //class name should Start with ca
 	private static final double MAX_FINES_OWED = 5.0;
 	private static final double DAMAGE_FEE = 2.0;
 
-	private static Library libraryObject; // changed library to Library and changed variable from self to LibraryObject
-	private int bookId; //changed variable name from BID to bookId
-	private int member; //changed variable name from MID to memberId
-	private int loanId; //changed variable name from LID to loanId
+	private static Library libraryObject; // change 1.2_changed library to Library and changed variable from self to LibraryObject
+	private int bookId; //change 1.3_changed variable name from BID to bookId
+	private int member; //change 1.4_changed variable name from MID to memberId
+	private int loanId; //change 1.5_changed variable name from LID to loanId
 	private Date loadDate;
 
-	private Map<Integer, Book> catalog; // changed object type book to Book
+	private Map<Integer, Book> catalog; //change 1.6_ changed object type book to Book
 	private Map<Integer, member> members;
 	private Map<Integer, loan> loans;
 	private Map<Integer, loan> currentLoans;
-	private Map<Integer, Book> damagedBooks; // change object type book to Book
+	private Map<Integer, Book> damagedBooks; //change 1.7_ change object type book to Book
 
 
-	private Library() {  // change constructor name from library to Library
+	private Library() {  // change 1.8_change constructor name from library to Library
 		catalog = new HashMap<>();
 		members = new HashMap<>();
 		loans = new HashMap<>();
 		currentLoans = new HashMap<>();
 		damagedBooks = new HashMap<>();
-		bookId = 1;  //changed BID to bookId
-		memberId = 1;  // changed MID to memberId
-		loanId = 1;  //changed LID to loanId
+		bookId = 1;  //change 1.9_changed BID to bookId
+		memberId = 1;  //change 1.10_ changed MID to memberId
+		loanId = 1;  //change 1.11_changed LID to loanId
 	}
 
 
-	public static synchronized Library INSTANCE() {   // changed method name from library to Library    
-		if (libraryObject == null) {  // changed self to libraryObject
+	public static synchronized Library INSTANCE() {   //change 1.12_ changed method name from library to Library    
+		if (libraryObject == null) {  //change 1.13_ changed self to libraryObject
 			Path path = Paths.get(LIBRARY_FILE);
 			if (Files.exists(path)) {
 				try (ObjectInputStream libraryObjectFileile = new ObjectInputStream(new FileInputStream(LIBRARY_FILE));) {
 
-					libraryObject = (library) libraryObject.readObject(); // changed self to libraryObject and lof to libraryObject
-					Calendar.getInstance().setDate(libraryObject.loadDate); //changed self to libraryObject
-					libraryObjectFile.close(); // changed lof to libraryObjectFile
+					libraryObject = (library) libraryObject.readObject(); //change 1.14_ changed self to libraryObject and lof to libraryObject
+					Calendar.getInstance().setDate(libraryObject.loadDate); //change 1.15_changed self to libraryObject
+					libraryObjectFile.close(); // change 1.16_changed lof to libraryObjectFile
 				}
 				catch (Exception e) {
 					throw new RuntimeException(e);
 				}
 			}
-			else libraryObject = new library(); //changed self to libraryObject
+			else libraryObject = new library(); //change 1.17_changed self to libraryObject
 		}
 		return self;
 	}
 
 
 	public static synchronized void SAVE() {
-		if (libraryObject != null) { //changed self to libraryObject
-			libraryObject.loadDate = Calendar.getInstance().Date(); //changed self to libraryObject
-			try (ObjectOutputStream libraryObjectFile = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE));) {  //changed lof to libraryObjectFile
-				libraryObjectFile.writeObject(libraryObject); // changed lof to libraryObjectFile and lof to libraryObject
-				libraryObjectFile.flush(); //changed self to libraryObjectFile
-				libraryObjectFile.close(); // changed self to libraryObjectFile
+		if (libraryObject != null) { //change 1.18_changed self to libraryObject
+			libraryObject.loadDate = Calendar.getInstance().Date(); //change 1.19_changed self to libraryObject
+			try (ObjectOutputStream libraryObjectFile = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE));) {  //change 1.20_changed lof to libraryObjectFile
+				libraryObjectFile.writeObject(libraryObject); // change 1.21_changed lof to libraryObjectFile and lof to libraryObject
+				libraryObjectFile.flush(); //change 1.22_changed self to libraryObjectFile
+				libraryObjectFile.close(); // change 1.23_changed self to libraryObjectFile
 			}
 			catch (Exception e) {
 				throw new RuntimeException(e);
@@ -83,57 +83,57 @@ public class Library implements Serializable { //class name should Start with ca
 	}
 
 
-	public int getBookId() { // changed method name from BookID to getBookId
-		return bookId; // change BID to bookId
+	public int getBookId() { //change 1.24_ changed method name from BookID to getBookId
+		return bookId; //change 1.25_ change BID to bookId
 	}
 
 
-	public int getMemberID() { // changed method name from MemberID to getMemberID
-		return memberId; // changed MID to memberId
+	public int getMemberID() { //change 1.26_ changed method name from MemberID to getMemberID
+		return memberId; //change 1.27_ changed MID to memberId
 	}
 
 
-	private int getnextBID() { // changed method name from nextBID to getnextBID
-		return bookId++; // changed BID to bookId 
+	private int getnextBID() { //change 1.28_ changed method name from nextBID to getnextBID
+		return bookId++; //change 1.29_ changed BID to bookId 
 	}
 
 
-	private int getnextMID() { // changed method name from nextMIDID to getnextMID
-		return memberId++;  // changed MID to memberId
+	private int getnextMID() { //change 1.30_ changed method name from nextMIDID to getnextMID
+		return memberId++;  //change 1.31_ changed MID to memberId
 	}
 
 
-	private int getnextLID() {   // changed method name from nextBID to getnextBID
-		return loanId++;  // changed LID to loanId
+	private int getnextLID() {   // change 1.32_changed method name from nextBID to getnextBID
+		return loanId++;  //change 1.33_ changed LID to loanId
 	} 
 
 
-	public List<member> getMembers() {       // changed method name from Members to getMembers
+	public List<member> getMembers() {       //change 1.34_ changed method name from Members to getMembers
 		return new ArrayList<member>(members.values());
 	}
 
 
-	public List<Book> getBooks() { // changed object type from book to Book and changed method name from Books to getBooks
+	public List<Book> getBooks() { //change 1.35_ changed object type from book to Book and changed method name from Books to getBooks
 		return new ArrayList<book>(catalog.values());
 	}
 
 
-	public List<loan> getCurrentLoans() {  // changed method name from CurrentLoans to getCurrentLoans
+	public List<loan> getCurrentLoans() {  // change 1.36_changed method name from CurrentLoans to getCurrentLoans
 		return new ArrayList<loan>(currentLoans.values());
 	}
 
 
 	public member Add_mem(String lastName, String firstName, String email, int phoneNo) {
-		member member = new member(lastName, firstName, email, phoneNo, getnextMemberId()); // changed method from nextMID to getnextMemberId
+		member member = new member(lastName, firstName, email, phoneNo, getnextMemberId()); //change 1.37_ changed method from nextMID to getnextMemberId
 		members.put(member.getId(), member);
 		return member;
 	}
 
 
-	public Book addBook(String a, String t, String c) { // changed book to Book  and method name from Add_book to addBook
-		Book b = new Book(a, t, c, getnextBookId()); // changed book to Book and changed object from nextBID to getnextBookId
-		catalog.put(book.ID(), book); //changed b to book
-		return book;  //changed b to book
+	public Book addBook(String a, String t, String c) { //change 1.38_ changed book to Book  and method name from Add_book to addBook
+		Book b = new Book(a, t, c, getnextBookId()); // change 1.39_changed book to Book and changed object from nextBID to getnextBookId
+		catalog.put(book.ID(), book); //change 1.40_changed b to book
+		return book;  //change 1.41_changed b to book
 
 	}
 
@@ -145,14 +145,14 @@ public class Library implements Serializable { //class name should Start with ca
 	}
 
 
-	public Book getBook(int bookId) { // changed return type from book to Book, changed method name from Book to getBook
+	public Book getBook(int bookId) { // change 1.42_changed return type from book to Book, changed method name from Book to getBook
 		if (catalog.containsKey(bookId))
 			return catalog.get(bookId);
 		return null;
 	}
 
 
-	public int getloanLimit() {  // changed loanLimit to getloanlimit
+	public int getloanLimit() {  //change 1.43_ changed loanLimit to getloanlimit
 		return LOAN_LIMIT;
 	}
 
@@ -177,9 +177,9 @@ public class Library implements Serializable { //class name should Start with ca
 	}
 
 
-	public loan issueLoan(Book book, member member) { // changed parameter object type from book to Book
+	public loan issueLoan(Book book, member member) { //change 1.44_ changed parameter object type from book to Book
 		Date dueDate = Calendar.getInstance().getDueDate(LOAN_PERIOD);
-		loan loan = new loan(getNextLoanId(), book, member, dueDate); // change method from nextID to getNextLoanId
+		loan loan = new loan(getNextLoanId(), book, member, dueDate); //change 1.45_ change method from nextID to getNextLoanId
 		member.takeOutLoan(loan);
 		book.Borrow();
 		loans.put(loan.getId(), loan);
@@ -231,7 +231,7 @@ public class Library implements Serializable { //class name should Start with ca
 	}
 
 
-	public void repairBook(Book currentBook) {  // change object type from book to Book
+	public void repairBook(Book currentBook) {  //change 1.46_ change object type from book to Book
 		if (damagedBooks.containsKey(currentBook.ID())) {
 			currentBook.Repair();
 			damagedBooks.remove(currentBook.ID());
