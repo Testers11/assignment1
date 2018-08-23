@@ -1,3 +1,10 @@
+
+/**
+ * author : Malinda Obaysekara
+ * Provide the set of functions which related to paying fine
+ */
+
+
 public class PayFineControl {
 	
 	private PayFineUI ui;
