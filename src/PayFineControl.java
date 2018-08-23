@@ -1,9 +1,20 @@
+
+/**
+ * author : Malinda Obaysekara
+ * Provide the set of functions which related to paying fine
+ */
+
+
 public class PayFineControl {
+	
+	private PayFineUI ui;	//change_m_1.01 Variable name has to change 
+	private ControlStateEnum state;	
+	private Library library;
+	private Member member;
 	
 	private PayFineUI ui;
 	private enum CONTROL_STATE { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
 	private CONTROL_STATE state;
-	
 	private library library;
 	private member member;;
 
