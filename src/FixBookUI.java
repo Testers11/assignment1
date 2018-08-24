@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 
 public class FixBookUI {
+	//Change 1.0 - Added Method Comments
     //UI Status
 	public static enum UI_STATE { INITIALISED, READY, FIXING, COMPLETED };
 
@@ -45,11 +46,11 @@ public class FixBookUI {
 					}
 				}
 				break;	
-				
+			//Change 1.1 - Change ans to answer	
 			case FIXING:
-				String ans = input("Fix Book? (Y/N) : ");
+				String answer = input("Fix Book? (Y/N) : ");
 				boolean fix = false;
-				if (ans.toUpperCase().equals("Y")) {
+				if (answer.toUpperCase().equals("Y")) {
 					fix = true;
 				}
 				control.fixBook(fix);
@@ -67,7 +68,7 @@ public class FixBookUI {
 		}
 		
 	}
-
+// Change 1.2 - Added Private Methgod header comments
 	//Input from User
 	private String input(String prompt) {
 		System.out.print(prompt);
