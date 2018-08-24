@@ -1,29 +1,35 @@
+import java.util.Scanner;
+
+
 public class ReturnBookControl {
 
-	private ReturnBookUI ui;
+	//change3.00_ enums for book status
+	private ReturnBookUI UserInterface; // change 3.01_ changed ui to userinterface
 	private enum CONTROL_STATE { INITIALISED, READY, INSPECTING };
 	private CONTROL_STATE state;
 	
-	private library library;
-	private loan currentLoan;
+	private library library; 
+	private loan currentLoan; 
 	
 
+	// comment 3.01_ constructor for ReturnbookControl
 	public ReturnBookControl() {
 		this.library = library.INSTANCE();
 		state = CONTROL_STATE.INITIALISED;
 	}
 	
-	
-	public void setUI(ReturnBookUI ui) {
+	// comment 3.02_ set UserInterface
+	public void set(ReturnBookUI UserInterface) { // change 3.02_ changed ui to UserInterface
 		if (!state.equals(CONTROL_STATE.INITIALISED)) {
 			throw new RuntimeException("ReturnBookControl: cannot call setUI except in INITIALISED state");
 		}	
-		this.ui = ui;
+		this.UserInterface = UserInterface; //change 3.03_ changed ui to UserInterface
 		ui.setState(ReturnBookUI.UI_STATE.READY);
 		state = CONTROL_STATE.READY;		
 	}
 
 
+	// comment 3.03_ method for scan book
 	public void bookScanned(int bookId) {
 		if (!state.equals(CONTROL_STATE.READY)) {
 			throw new RuntimeException("ReturnBookControl: cannot call bookScanned except in READY state");
@@ -35,7 +41,7 @@ public class ReturnBookControl {
 			return;
 		}
 		if (!currentBook.On_loan()) {
-			ui.display("Book has not been borrowed");
+			UserInterface.display("Book has not been borrowed");  // change 3.04_ changed ui to UserInterface
 			return;
 		}		
 		currentLoan = library.getLoanByBookId(bookId);	
@@ -43,23 +49,24 @@ public class ReturnBookControl {
 		if (currentLoan.isOverDue()) {
 			overDueFine = library.calculateOverDueFine(currentLoan);
 		}
-		ui.display("Inspecting");
-		ui.display(currentBook.toString());
-		ui.display(currentLoan.toString());
+		UserInterface.display("Inspecting"); // change 3.05_ changed ui to UserInterface
+		UserInterface.display(currentBook.toString()); // change 3.06_ changed ui to UserInterface
+		UserInterface.display(currentLoan.toString()); // change 3.07_ changed ui to UserInterface
 		
 		if (currentLoan.isOverDue()) {
-			ui.display(String.format("\nOverdue fine : $%.2f", overDueFine));
+			UserInterface.display(String.format("\nOverdue fine : $%.2f", overDueFine)); // change 3.08_ changed ui to UserInterface
 		}
-		ui.setState(ReturnBookUI.UI_STATE.INSPECTING);
+		UserInterface.setState(ReturnBookUI.UI_STATE.INSPECTING); // change 3.09_ changed ui to UserInterface
 		state = CONTROL_STATE.INSPECTING;		
 	}
 
 
+	// comment 3.04_ method to show scanning progress message
 	public void scanningComplete() {
 		if (!state.equals(CONTROL_STATE.READY)) {
 			throw new RuntimeException("ReturnBookControl: cannot call scanningComplete except in READY state");
 		}	
-		ui.setState(ReturnBookUI.UI_STATE.COMPLETED);		
+		UserInterface.setState(ReturnBookUI.UI_STATE.COMPLETED); // change 3.10_ changed ui to UserInterface		
 	}
 
 
@@ -69,7 +76,7 @@ public class ReturnBookControl {
 		}	
 		library.dischargeLoan(currentLoan, isDamaged);
 		currentLoan = null;
-		ui.setState(ReturnBookUI.UI_STATE.READY);
+		UserInterface.setState(ReturnBookUI.UI_STATE.READY); // change 3.11_ changed ui to UserInterface
 		state = CONTROL_STATE.READY;				
 	}
 
