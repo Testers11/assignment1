@@ -1,7 +1,9 @@
 
 
 // Review-1.01 Add author name
-
+/**
+ * author : Thilina Gayamal
+ */
 import java.util.Scanner; 
 
 public class FixBookUI {
@@ -28,6 +30,8 @@ public class FixBookUI {
 	
 // Review-1.02 Add some more descriptive comments here
 //Method for fix book process	
+
+//Run Method
 	public void run() {
 		output("Fix Book Use Case UI\n");
 		
