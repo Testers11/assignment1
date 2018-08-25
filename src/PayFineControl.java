@@ -7,16 +7,16 @@
 
 public class PayFineControl {
 	
-	private PayFineUI ui;	//change_m_1.01 Variable name has to change 
+	private PayFineUI userInterface;	// Review 1.2 changed ui to userInterface//change_m_1.01 Variable name has to change 
 	private ControlStateEnum state;	//change_m_1.02 Variable name has to change
 	private Library library;  //change_m_1.03 Variable name has to change
 	private Member member;    //change_m_1.04 Variable name has to change
 	
-	private PayFineUI ui;
+	private PayFineUI userInterface; // Review 1.3 changed ui to userInterface
 	private enum CONTROL_STATE { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
 	private CONTROL_STATE state;
-	private library library;
-	private member member;;
+	private Library library;  // Review 1.0_ chaned library to Library
+	private Member member;;   // Review 1.1_ changed member to Member
 
 
 	public PayFineControl() {
@@ -25,12 +25,12 @@ public class PayFineControl {
 	}
 	
 	
-	public void setUI(PayFineUI ui) {
+	public void setUI(PayFineUI userInterface) {  //Review 1.4_ changed member to Member
 		if (!state.equals(CONTROL_STATE.INITIALISED)) {
 			throw new RuntimeException("PayFineControl: cannot call setUI except in INITIALISED state");
 		}	
-		this.ui = ui;
-		ui.setState(PayFineUI.UI_STATE.READY);
+		this.userInterface = userInterface;
+		userInterface.setState(PayFineUI.UI_STATE.READY); // Review 1.5_ changed member to Member
 		state = CONTROL_STATE.READY;		
 	}
 
@@ -42,17 +42,17 @@ public class PayFineControl {
 		member = library.getMember(memberId);
 		
 		if (member == null) {
-			ui.display("Invalid Member Id");
+			userInterface.display("Invalid Member Id");  //Review 1.6_ changed member to Member
 			return;
 		}
-		ui.display(member.toString());
-		ui.setState(PayFineUI.UI_STATE.PAYING);
+		userInterface.display(member.toString());
+	    userInterface.setState(PayFineUI.UI_STATE.PAYING);
 		state = CONTROL_STATE.PAYING;
 	}
 	
 	
 	public void cancel() {
-		ui.setState(PayFineUI.UI_STATE.CANCELLED);
+		userInterface.setState(PayFineUI.UI_STATE.CANCELLED); // Review 1.7_ changed member to Member
 		state = CONTROL_STATE.CANCELLED;
 	}
 
@@ -63,11 +63,11 @@ public class PayFineControl {
 		}	
 		double change = member.payFine(amount);
 		if (change > 0) {
-			ui.display(String.format("Change: $%.2f", change));
+			userInterface.display(String.format("Change: $%.2f", change));
 		}
-		ui.display(member.toString());
-		ui.setState(PayFineUI.UI_STATE.COMPLETED);
-		state = CONTROL_STATE.COMPLETED;
+		userInterface.display(member.toString());  // Review 1.8_ changed member to Member
+		userInterface.setState(PayFineUI.UI_STATE.COMPLETED); // Review 1.9_ changed member to Member
+		state = CONTROL_STATE.COMPLETED; 
 		return change;
 	}
 	
