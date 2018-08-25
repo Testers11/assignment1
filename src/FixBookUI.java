@@ -2,14 +2,15 @@ import java.util.Scanner;
 
 
 public class FixBookUI {
-
+	//Change 1.0 - Added Method Comments
+    //UI Status
 	public static enum UI_STATE { INITIALISED, READY, FIXING, COMPLETED };
 
 	private FixBookControl control;
 	private Scanner input;
 	private UI_STATE state;
 
-	
+	//Constructer for Fix book UI
 	public FixBookUI(FixBookControl control) {
 		this.control = control;
 		input = new Scanner(System.in);
@@ -17,12 +18,12 @@ public class FixBookUI {
 		control.setUI(this);
 	}
 
-
+    // Method for set initial state
 	public void setState(UI_STATE state) {
 		this.state = state;
 	}
 
-	
+//Method for fix book process	
 	public void run() {
 		output("Fix Book Use Case UI\n");
 		
@@ -45,11 +46,11 @@ public class FixBookUI {
 					}
 				}
 				break;	
-				
+			//Change 1.1 - Change ans to answer	
 			case FIXING:
-				String ans = input("Fix Book? (Y/N) : ");
+				String answer = input("Fix Book? (Y/N) : ");
 				boolean fix = false;
-				if (ans.toUpperCase().equals("Y")) {
+				if (answer.toUpperCase().equals("Y")) {
 					fix = true;
 				}
 				control.fixBook(fix);
@@ -67,19 +68,19 @@ public class FixBookUI {
 		}
 		
 	}
-
-	
+// Change 1.2 - Added Private Methgod header comments
+	//Input from User
 	private String input(String prompt) {
 		System.out.print(prompt);
 		return input.nextLine();
 	}	
 		
-		
+	//Output based on input provided	
 	private void output(Object object) {
 		System.out.println(object);
 	}
 	
-
+//Methos dispaly the output
 	public void display(Object object) {
 		output(object);
 	}
