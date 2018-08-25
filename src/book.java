@@ -2,6 +2,7 @@ import java.io.Serializable;
 
 
 //Review_1.0 - Add the Method header comments for all methods
+//Author Mohamed Nashath
 @SuppressWarnings("serial")
 public class Book implements Serializable { // change_1.01 class name book has changes to Book
 	
