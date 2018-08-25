@@ -1,7 +1,7 @@
 import java.io.Serializable;
 
-// Review Comment 1.0 - Should be added Method Header Comments
 
+//Review_1.0 - Add the Method header comments for all methods
 @SuppressWarnings("serial")
 public class Book implements Serializable { // change_1.01 class name book has changes to Book
 	
