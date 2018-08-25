@@ -5,11 +5,12 @@ public class ReturnBookControl {
 
 	//change3.00_ enums for book status
 	private ReturnBookUI UserInterface; // change 3.01_ changed ui to userinterface
+							//Review 3.1 UserInterface needs to be changed into userInterface
 	private enum CONTROL_STATE { INITIALISED, READY, INSPECTING };
 	private CONTROL_STATE state;
 	
-	private library library; 
-	private loan currentLoan; 
+	private library library; //Review 3.2 library(first) needs to be changed into Library
+	private loan currentLoan; //Review 3.3 loan needs to be changed into Loan
 	
 
 	// comment 3.01_ constructor for ReturnbookControl
@@ -20,11 +21,13 @@ public class ReturnBookControl {
 	
 	// comment 3.02_ set UserInterface
 	public void set(ReturnBookUI UserInterface) { // change 3.02_ changed ui to UserInterface
+										//Review 3.4 ReturnBookUI and  UserInterface need to be changed into returnBookUI and userInterface respectively
 		if (!state.equals(CONTROL_STATE.INITIALISED)) {
 			throw new RuntimeException("ReturnBookControl: cannot call setUI except in INITIALISED state");
 		}	
 		this.UserInterface = UserInterface; //change 3.03_ changed ui to UserInterface
-		ui.setState(ReturnBookUI.UI_STATE.READY);
+											//Review 3.5 UserInterface needs to be changed into userInterface
+		ui.setState(ReturnBookUI.UI_STATE.READY);		//Review 3.6 ui needs to be changed into userInterface
 		state = CONTROL_STATE.READY;		
 	}
 
@@ -37,7 +40,7 @@ public class ReturnBookControl {
 		book currentBook = library.Book(bookId);
 		
 		if (currentBook == null) {
-			ui.display("Invalid Book Id");
+			ui.display("Invalid Book Id");		//Review 3.7 ui needs to be changed into userInterface
 			return;
 		}
 		if (!currentBook.On_loan()) {

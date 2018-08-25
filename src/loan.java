@@ -47,26 +47,27 @@ public class Loan implements Serializable { // changed loan to Loan Class name s
 
 
 	public String toString() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); // Review 2.1 sdf needs to be changed into simpleDateFormat
 
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder();			// Review 2.2 sb needs to be changed into stringBuilder
 		sb.append("Loan:  ").append(loanId).append("\n") //change 2.13_changed ID to loanId
+														// Review 2.3 sb needs to be changed into stringBuilder
 		  .append("  Borrower ").append(member.getId()).append(" : ") //change 2.14_ changed M to member
 		  .append(member.getLastName()).append(", ").append(member.getFirstName()).append("\n") //change 2.15_changed M to member
 		  .append("  Book ").append(book.dueDate()).append(" : " ) //change 2.16_changed B to book and D to dueDate
 		  .append(book.Title()).append("\n") //change 2.17_ changed B to book 
 		  .append("  DueDate: ").append(sdf.format(dueDate)).append("\n") //change 2.18_changed D to dueDate
 		  .append("  State: ").append(state);
-		return sb.toString();
+		return sb.toString();		// Review 2.4 sb needs to be changed into stringBuilder
 	}
 
 
-	public member Member() {
+	public member Member() {	// Review 2.5 member needs to be changed into Member and Member into member
 		return membetr; //change 2.19_changed M to member
 	}
 
 
-	public book Book() {
+	public book Book() {		// Review 2.6 book needs to be changed into Book and Book into book
 		return book; //change 2.20_changed B to book
 	}
 

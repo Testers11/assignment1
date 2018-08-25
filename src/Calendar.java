@@ -25,6 +25,7 @@ public class Calendar {
 	}
 	
 	// Review-1.01 add some appopriate comments 
+	//Set Data method running as asycronus
 	public synchronized void setDate(Date date) {
 		try {
 			calender.setTime(date);
@@ -59,6 +60,7 @@ public class Calendar {
 	}
 	
 	// Review-1.02 Add descriptive comments here
+	// return Different of Days
 	public synchronized long getDaysDifference(Date targetDate) {
 		long diffMillis = Date().getTime() - targetDate.getTime();
 	    long diffDays = TimeUnit.DAYS.convert(diffMillis, TimeUnit.MILLISECONDS);
