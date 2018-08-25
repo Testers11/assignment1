@@ -30,9 +30,9 @@ public class Library implements Serializable { // change 1.0_ class name should 
 	private Date loadDate;
 
 	private Map<Integer, Book> catalog; //change 1.6_ changed object type book to Book
-	private Map<Integer, member> members;
-	private Map<Integer, loan> loans;
-	private Map<Integer, loan> currentLoans;
+	private Map<Integer, member> members;// Review 1.1 member has to be changed into Member
+	private Map<Integer, loan> loans; // Review 1.2 loan shoul be Loan
+	private Map<Integer, loan> currentLoans; // Review 1.3 loan should be Loan
 	private Map<Integer, Book> damagedBooks; //change 1.7_ change object type book to Book
 
 
@@ -123,8 +123,9 @@ public class Library implements Serializable { // change 1.0_ class name should 
 	}
 
 
-	public member Add_mem(String lastName, String firstName, String email, int phoneNo) {
+	public member Add_mem(String lastName, String firstName, String email, int phoneNo) { // Review 1.4 member has to be changed into Member and Add_mem has to be addMember
 		member member = new member(lastName, firstName, email, phoneNo, getnextMemberId()); //change 1.37_ changed method from nextMID to getnextMemberId
+														//Review 1.5 member (first member) should be Member
 		members.put(member.getId(), member);
 		return member;
 	}
@@ -132,13 +133,14 @@ public class Library implements Serializable { // change 1.0_ class name should 
 
 	public Book addBook(String a, String t, String c) { //change 1.38_ changed book to Book  and method name from Add_book to addBook
 		Book b = new Book(a, t, c, getnextBookId()); // change 1.39_changed book to Book and changed object from nextBID to getnextBookId
+		// Review 1.6 b should be book
 		catalog.put(book.ID(), book); //change 1.40_changed b to book
 		return book;  //change 1.41_changed b to book
 
 	}
 
 
-	public member getMember(int memberId) {
+	public member getMember(int memberId) {		//Review 1.7 member should be Member
 		if (members.containsKey(memberId))
 			return members.get(memberId);
 		return null;
@@ -164,7 +166,7 @@ public class Library implements Serializable { // change 1.0_ class name should 
 		if (member.getFinesOwed() >= MAX_FINES_OWED)
 			return false;
 
-		for (loan loan : member.getLoans())
+		for (loan loan : member.getLoans()) // Review 1.8 loan (first loan) should be Loan
 			if (loan.isOverDue())
 				return false;
 
@@ -172,14 +174,17 @@ public class Library implements Serializable { // change 1.0_ class name should 
 	}
 
 
-	public int loansRemainingForMember(member member) {
+	public int loansRemainingForMember(member member) {  //Review 1.9 member (first member) should be Member
 		return LOAN_LIMIT - member.getNumberOfCurrentLoans();
 	}
 
 
 	public loan issueLoan(Book book, member member) { //change 1.44_ changed parameter object type from book to Book
+														//Review 1.10 member (first member) should be Member
+														//Review 1.11 loan  should be Loan
 		Date dueDate = Calendar.getInstance().getDueDate(LOAN_PERIOD);
 		loan loan = new loan(getNextLoanId(), book, member, dueDate); //change 1.45_ change method from nextID to getNextLoanId
+																		//Review 1.12 loan (first loan) should be Loan
 		member.takeOutLoan(loan);
 		book.Borrow();
 		loans.put(loan.getId(), loan);
@@ -188,7 +193,7 @@ public class Library implements Serializable { // change 1.0_ class name should 
 	}
 
 
-	public loan getLoanByBookId(int bookId) {
+	public loan getLoanByBookId(int bookId) {			//Review 1.13 loan (first loan) should be Loan
 		if (currentLoans.containsKey(bookId)) {
 			return currentLoans.get(bookId);
 		}
@@ -196,7 +201,7 @@ public class Library implements Serializable { // change 1.0_ class name should 
 	}
 
 
-	public double calculateOverDueFine(loan loan) {
+	public double calculateOverDueFine(loan loan) {		//Review 1.14 loan (first loan) should be Loan
 		if (loan.isOverDue()) {
 			long daysOverDue = Calendar.getInstance().getDaysDifference(loan.getDueDate());
 			double fine = daysOverDue * FINE_PER_DAY;
@@ -207,14 +212,14 @@ public class Library implements Serializable { // change 1.0_ class name should 
 
 
 	public void dischargeLoan(loan currentLoan, boolean isDamaged) {
-		member member = currentLoan.Member();
+		member member = currentLoan.Member();					//Review 1.15 member (first member) should be Member
 		Book book  = currentLoan.Book(); // changed object type fromm book to Book
 
 		double overDueFine = calculateOverDueFine(currentLoan);
 		member.addFine(overDueFine);
 
 		member.dischargeLoan(currentLoan);
-		book.Return(isDamaged);
+		book.Return(isDamaged);			//Review 1.16 Return has to be changed into returnBook (please refer book.java class)
 		if (isDamaged) {
 			member.addFine(DAMAGE_FEE);
 			damagedBooks.put(book.ID(), book);
@@ -225,7 +230,7 @@ public class Library implements Serializable { // change 1.0_ class name should 
 
 
 	public void checkCurrentLoans() {
-		for (loan loan : currentLoans.values()) {
+		for (loan loan : currentLoans.values()) {				//Review 1.17 loan (first loan) should be Loan
 			loan.checkOverDue();
 		}
 	}
@@ -233,7 +238,7 @@ public class Library implements Serializable { // change 1.0_ class name should 
 
 	public void repairBook(Book currentBook) {  //change 1.46_ change object type from book to Book
 		if (damagedBooks.containsKey(currentBook.ID())) {
-			currentBook.Repair();
+			currentBook.Repair();				//Review 1.18 Repair has to be changed into repairBook (please refer book.java class)
 			damagedBooks.remove(currentBook.ID());
 		}
 		else {
