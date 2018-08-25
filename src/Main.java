@@ -1,7 +1,7 @@
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
-
+// Reviewed by reviewer
 public class Main {
 	
 	private static Scanner inputData;     	// Change cycle 1.1 - change IN into inputData
@@ -130,7 +130,8 @@ public class Main {
 		output("\nEnded\n");
 	}	
 
-		private static void payFine() {
+	
+	private static void payFine() {
 		new PayFineUI(new PayFineControl()).run();		
 	}
 
