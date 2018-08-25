@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 
 public class PayFineUI {
-	// Hashini test.....
+	// code Reviewed.....
 
 	public static enum UI_STATE { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
 	
