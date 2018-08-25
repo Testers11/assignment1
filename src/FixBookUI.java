@@ -1,5 +1,8 @@
-import java.util.Scanner;
 
+
+// Review-1.01 Add author name
+
+import java.util.Scanner; 
 
 public class FixBookUI {
     //UI Status
@@ -21,7 +24,8 @@ public class FixBookUI {
 	public void setState(UI_STATE state) {
 		this.state = state;
 	}
-
+	
+// Review-1.02 Add some more descriptive comments here
 //Method for fix book process	
 	public void run() {
 		output("Fix Book Use Case UI\n");
