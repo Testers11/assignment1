@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+//Review - 1.01 - Add Author Name for Class
 
 public class BorrowBookUI {
 
@@ -8,8 +9,8 @@ public class BorrowBookUI {
 	private BorrowBookControl control;
 	private Scanner input;
 	private UI_STATE state;
-
-	
+  
+	//Review - 1.02 - Add Method Description
 	public BorrowBookUI(BorrowBookControl control) {
 		this.control = control;
 		input = new Scanner(System.in);
@@ -17,18 +18,20 @@ public class BorrowBookUI {
 		control.setUI(this);
 	}
 
-	
+	//Review - 1.03 - Add Method Description
 	private String input(String prompt) {
 		System.out.print(prompt);
 		return input.nextLine();
 	}	
 		
-		
+	//Review - 1.04 - Add Method Description
+	private String input(String prompt) {	
 	private void output(Object object) {
 		System.out.println(object);
 	}
 	
-			
+	//Review - 1.05 - Add Method Description
+	private String input(String prompt) {	
 	public void setState(UI_STATE state) {
 		this.state = state;
 	}

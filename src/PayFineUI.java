@@ -9,6 +9,10 @@ import java.util.Scanner;
  * 
  */
 public class PayFineUI {
+<<<<<<< HEAD
+=======
+	// code Reviewed.....
+>>>>>>> master
 
 	// change_m_1.02 enumeration for each state of UI
 	public  enum UI_STATE {
