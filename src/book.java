@@ -1,5 +1,6 @@
 import java.io.Serializable;
 
+// Review Comment 1.0 - Should be added Method Header Comments
 
 @SuppressWarnings("serial")
 public class Book implements Serializable { // change_1.01 class name book has changes to Book
