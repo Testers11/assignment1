@@ -96,16 +96,16 @@ public class Member implements Serializable {					// Change cycle 1.1 - Change c
 		double change = 0;
 		if (amount > fines) {						// Change cycle 1.28 - change FINES into fines
 			change = amount - fines;			// Change cycle 1.29 - change FINES into fines
-			fines = 0;							// Change cycle 1.19 - change FINES into fines
+			fines = 0;							// Change cycle 1.30 - change FINES into fines
 		}
 		else {
-			fines -= amount;				// Change cycle 1.19 - change FINES into fines
+			fines -= amount;				// Change cycle 1.31 - change FINES into fines
 		}
 		return change;
 	}
 
 
-	public void dischargeLoan(Loan loan) {			// Change cycle 1.24 - change loan into Loan
+	public void dischargeLoan(Loan loan) {			// Change cycle 1.32 - change loan into Loan
 		if (LNS.containsKey(loan.getId())) {
 			LNS.remove(loan.getId());
 		}
