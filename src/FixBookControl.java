@@ -1,3 +1,5 @@
+// Review-1.01 Add author name
+
 public class FixBookControl {
 	// 1.1 Comment Enums for book status
 	private FixBookUI userInterface;
@@ -23,7 +25,8 @@ public class FixBookControl {
 		userInterface.setState(FixBookUI.UI_STATE.READY);
 		state = CONTROL_STATE.READY;		
 	}
-
+	
+	// Review-1.02 Add some more descriptive comments here
     //1.5 Comment Method for scan book
 	public void bookScanned(int bookId) {
 		if (!state.equals(CONTROL_STATE.READY)) {
