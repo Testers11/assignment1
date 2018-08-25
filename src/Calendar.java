@@ -24,6 +24,7 @@ public class Calendar {
 		calender.add(Calendar.DATE, days);		
 	}
 	
+	// Review-1.01 add some appopriate comments 
 	public synchronized void setDate(Date date) {
 		try {
 			calender.setTime(date);
@@ -57,6 +58,7 @@ public class Calendar {
 		return dueDate;
 	}
 	
+	// Review-1.02 Add descriptive comments here
 	public synchronized long getDaysDifference(Date targetDate) {
 		long diffMillis = Date().getTime() - targetDate.getTime();
 	    long diffDays = TimeUnit.DAYS.convert(diffMillis, TimeUnit.MILLISECONDS);
