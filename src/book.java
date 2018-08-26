@@ -3,6 +3,7 @@ import java.io.Serializable;
 
 //Review_1.0 - Add the Method header comments for all methods
 //Author Mohamed Nashath
+// changes cycle 2 done by mohamed nashath (after review)
 @SuppressWarnings("serial")
 public class Book implements Serializable { // change_1.01 class name book has changes to Book
 	
@@ -14,7 +15,7 @@ public class Book implements Serializable { // change_1.01 class name book has c
 	private enum STATE { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
 	private STATE state;
 	
-	
+	// constructor
 	public Book(String author, String title, String callNo, int id) {  // change_1.06 class name book has changed to Book
 		this.author = author; // change_1.07 this.A has changed to this.author
 		this.title = title; // change_1.08 this.T has changed to this.title
@@ -43,7 +44,7 @@ public class Book implements Serializable { // change_1.01 class name book has c
 	}
 
 
-	
+	// chacking the availability of state
 	public boolean isAvailable() { // change_1.19 method name Available has changed to isAvailable.
 		return state == STATE.AVAILABLE;
 	}
@@ -58,7 +59,7 @@ public class Book implements Serializable { // change_1.01 class name book has c
 		return state == STATE.DAMAGED;
 	}
 
-	
+	// method for bortrowing the book
 	public void borrowBook() { // change_1.22 method name Borrow has changed to borrowBook
 		if (state.equals(STATE.AVAILABLE)) {
 			state = STATE.ON_LOAN;
@@ -69,7 +70,7 @@ public class Book implements Serializable { // change_1.01 class name book has c
 		
 	}
 
-
+	// method of returning the book
 	public void returnBook(boolean DAMAGED) { // change_1.23 method name Return has changed to returnBook.
 		if (state.equals(STATE.ON_LOAN)) {
 			if (DAMAGED) {
