@@ -1,13 +1,10 @@
 import java.util.Scanner;
 
-/**
- * change_m_1.01
- * author : Malinda Obaysekara 
- * provide the set of functions related to user
- * interface : Return Book UI functions
- *
- */
+
+// code reviewed
+
 //As the mediator review done
+
 public class ReturnBookUI {
 
 	// change_m_1.02 enumeration for each state of UI
