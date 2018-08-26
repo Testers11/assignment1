@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 //Review - 1.01 - Add Author Name for Class
-
+// Author Mohamed Nashath
 public class BorrowBookUI {
 
 	public static enum UI_STATE { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };

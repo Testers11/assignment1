@@ -1,5 +1,7 @@
 // Review-1.01 Add author name
-
+/**
+ * author : Thilina Gayamal
+ */
 public class FixBookControl {
 	// 1.1 Comment Enums for book status
 	private FixBookUI userInterface;
@@ -28,6 +30,7 @@ public class FixBookControl {
 	
 	// Review-1.02 Add some more descriptive comments here
     //1.5 Comment Method for scan book
+	//Scaned book method
 	public void bookScanned(int bookId) {
 		if (!state.equals(CONTROL_STATE.READY)) {
 			throw new RuntimeException("FixBookControl: cannot call bookScanned except in READY state");
