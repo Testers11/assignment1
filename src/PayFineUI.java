@@ -8,7 +8,9 @@ import java.util.Scanner;
  * interface : Paying fine functions
  * 
  */
+//As the mediator review done
 public class PayFineUI {
+<<<<<<< HEAD
 
 	// change_m_1.02 enumeration for each state of UI
 	public  enum UI_STATE {

@@ -3,6 +3,8 @@
  * author : Malinda Obaysekara
  * Provide the set of functions which related to paying fine
  */
+
+// As the mediator review done
 public class PayFineControl {
 	
 	
