@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+// reviewed by mohamed nashath
 @SuppressWarnings("serial")
 public class Member implements Serializable {					// Change cycle 1.1 - Change class member into Member
 	private String lastName;									// Change cycle 1.2 - change LN into lastName
@@ -13,7 +14,7 @@ public class Member implements Serializable {					// Change cycle 1.1 - Change c
 	private int id;												// Change cycle 1.6 - change ID into id
 	private double fines;										// Change cycle 1.7 - change FINES into fines
 	
-	private Map<Integer, loan> LNS;
+	private Map<Integer, loan> LNS; // review_1.1 variable name LNS should be changed as loanNo
 
 	
 	public Member(String lastName, String firstName, String email, int phoneNo, int id) { // Change cycle 1.8 - Change class member into Member
@@ -23,7 +24,7 @@ public class Member implements Serializable {					// Change cycle 1.1 - Change c
 		this.phoneNo = phoneNo;															// Change cycle 1.12- change PN into phoneNo
 		this.id = id;																	// Change cycle 1.13- change ID into id
 		
-		this.LNS = new HashMap<>();
+		this.LNS = new HashMap<>(); // review_1.2 this.LNS should be changed as this.loanNo
 	}
 
 	
@@ -38,7 +39,7 @@ public class Member implements Serializable {					// Change cycle 1.1 - Change c
 		  .append(String.format("  Fines Owed :  $%.2f", fines))						// Change cycle 1.19 - change FINES into fines
 		  .append("\n");
 		
-		for (Loan loan : LNS.values()) {										// Change cycle 1.20 - change loan into Loan
+		for (Loan loan : LNS.values()) { // review_1.3 LNS.values() should be changed as loanNo.values()										// Change cycle 1.20 - change loan into Loan
 			stringBuilder.append(loan).append("\n");							// Change cycle 1.21- change sb into stringBuilder
 		}		  
 		return stringBuilder.toString();										// Change cycle 1.22- change sb into stringBuilder
@@ -51,23 +52,23 @@ public class Member implements Serializable {					// Change cycle 1.1 - Change c
 
 	
 	public List<loan> getLoans() {
-		return new ArrayList<loan>(LNS.values());
+		return new ArrayList<loan>(LNS.values()); // review_1.4 LNS.values() should be changed as loanNo.values()
 	}
 
 	
 	public int getNumberOfCurrentLoans() {
-		return LNS.size();
+		return LNS.size(); // review_1.5 variable name LN.size() should be changed as loanNo.size()
 	}
 
 	
 	public double getFinesOwed() {
-		return FINES;
+		return FINES; // review_1.6 FINES should be as fines
 	}
 
 	
 	public void takeOutLoan(Loan loan) {					// Change cycle 1.24 - change loan into Loan
-		if (!LNS.containsKey(loan.getId())) {
-			LNS.put(loan.getId(), loan);
+		if (!LNS.containsKey(loan.getId())) { // review_1.7 LNS should be changed as loanNo
+			LNS.put(loan.getId(), loan); // review_1.8 LNS should be changed as loanNo
 		}
 		else {
 			throw new RuntimeException("Duplicate loan added to member");
@@ -106,8 +107,8 @@ public class Member implements Serializable {					// Change cycle 1.1 - Change c
 
 
 	public void dischargeLoan(Loan loan) {			// Change cycle 1.32 - change loan into Loan
-		if (LNS.containsKey(loan.getId())) {
-			LNS.remove(loan.getId());
+		if (LNS.containsKey(loan.getId())) { // review_1.9 LNS should be changed as loanNo
+			LNS.remove(loan.getId()); // review_1.10 LNS should be changed as loanNo
 		}
 		else {
 			throw new RuntimeException("No such loan held by member");
