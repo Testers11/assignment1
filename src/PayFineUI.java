@@ -8,6 +8,7 @@ import java.util.Scanner;
  * interface : Paying fine functions
  * 
  */
+//As the mediator review done
 public class PayFineUI {
 <<<<<<< HEAD
 
