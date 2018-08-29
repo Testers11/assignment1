@@ -5,7 +5,6 @@ import java.util.Scanner;
  * author : Malinda Obaysekara 
  * provide the set of functions related to user
  * interface : Return Book UI functions
- *
  */
 public class ReturnBookUI {
 
