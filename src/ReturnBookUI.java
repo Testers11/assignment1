@@ -82,18 +82,20 @@ public class ReturnBookUI {
 		}
 	}
 
-	
+	// change_m_1.06 Manage user's input to the Payment handling UI
 	private String input(String prompt) {
 		System.out.print(prompt);
 		return input.nextLine();
 	}
 
 	
+	// change_m_1.07 Print the passed object , that can be shown in UI
 	private void output(Object object) {
 		System.out.println(object);
 	}
 
 	
+	// change_m_1.08 Manage information to show in user interface
 	public void display(Object object) {
 		output(object);
 	}
